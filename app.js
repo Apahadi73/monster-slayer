@@ -25,7 +25,11 @@ const app = Vue.createApp({
       }
       return { width: this.playerHealth + "%" };
     },
+    // only allows player to use special attack or heal after 3 rounds
     mayUseSpecialAttack() {
+      return this.currentRound % 3 !== 0;
+    },
+    mayUseHeal() {
       return this.currentRound % 3 !== 0;
     },
   },
