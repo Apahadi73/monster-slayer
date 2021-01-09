@@ -3,6 +3,7 @@ function getRandomValue(min, max) {
 }
 
 const app = Vue.createApp({
+  // our app's data
   data() {
     return {
       playerHealth: 100,
@@ -13,24 +14,27 @@ const app = Vue.createApp({
     };
   },
   computed: {
+    // displays monster health
     monsterBarStyles() {
       if (this.monsterHealth < 0) {
         return { width: "0%" };
       }
       return { width: this.monsterHealth + "%" };
     },
+    // displays player health
     playerBarStyles() {
       if (this.playerHealth < 0) {
         return { width: "0%" };
       }
       return { width: this.playerHealth + "%" };
     },
-    // only allows player to use special attack or heal after 3 rounds
+    // only allows player to use special attack after 3 rounds
     mayUseSpecialAttack() {
       return this.currentRound % 3 !== 0;
     },
+    // only allows player to use heal after 3 rounds
     mayUseHeal() {
-      return this.currentRound % 3 !== 0;
+      return this.currentRound % 2 !== 0;
     },
   },
   watch: {
